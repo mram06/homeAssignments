@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДЗ №3 Задача 5</title>
+</head>
+<body>
+    <h2>Задача 5</h2>
+    <p>З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.</p>
+    <script>
+        // 1. Вводимо дані
+        let driverCategory = prompt(`Введіть літеру категорії (A, B, C)`, `A`)
+        let allowedDriverCategory
+
+        // 2. Знаходимо результат
+        switch (driverCategory){
+            case 'A': allowedDriverCategory = '🏍 А-мотоцикл'
+                break
+            case 'B': allowedDriverCategory = '🚗 В-легковий автомобіль'
+                break
+            case 'C': allowedDriverCategory = '🚛 С-вантажний автомобіль'
+                break
+            default: allowedDriverCategory = 'Неправильно введена літера категорії'
+                break
+        }
+
+        // 3. Виводимо на екран
+        document.write(`Дозволена вам категорія: <br> ${allowedDriverCategory}`)
+    </script>
+</body>
+</html>

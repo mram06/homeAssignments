@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДЗ №3 Задача 3</title>
+</head>
+<body>
+    <h2>Задача 3</h2>
+    <p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.</p>
+    <script>
+        // 1. Вводимо дані
+        const minNumberInRange = 1
+        const maxNumberInRange = 5
+        let randomNumber = minNumberInRange + Math.floor(Math.random()*(maxNumberInRange - minNumberInRange + 1))
+        let enteredNumber = parseInt(prompt(`Спробуйте відгадати число у проміжку від 1 до 5`, `0`))
+
+        // 2. Знаходимо результат
+        if (enteredNumber == randomNumber)
+            document.write(`Ви правильно вгадали! Це число ${randomNumber}`)
+        else
+            document.write(`Ви не вгадали, це число ${randomNumber}`)
+        // 3. Виводимо на екран
+    </script>
+</body>
+</html>
