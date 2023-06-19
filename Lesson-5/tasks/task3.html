@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №5 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Вивести з використанням циклів маркований список з випадковими числами
+      (1-100). Кількість випадкових чисел вводиться користувачем. Приклад:
+    </p>
+    <ul>
+      <li>12</li>
+      <li>21</li>
+      <li>34</li>
+      <li>51</li>
+    </ul>
+    <p>______________________________________</p>
+    <ol>
+      <script>
+        // 1. Вводимо дані
+        let userRandomNumber = parseInt(
+          prompt("Введіть кількість випадкових чисел", 5)
+        );
+        // 2. Знаходимо результат
+        for (let i = 0; i < userRandomNumber; i++) {
+          let result = 1 + Math.floor(Math.random() * (99 - 1 + 1));
+          document.write(`<li>${result}</li><br>`);
+        }
+        // 3. Виводимо на екран
+      </script>
+    </ol>
+  </body>
+</html>
