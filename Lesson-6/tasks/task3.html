@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №6 Задача 3</title>
+  </head>
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+      Відобразити трикутник за допомогою символів «о»<br /><br />
+      оооооооооооо<br />
+      ооооооооооо<br />
+      оооооооооо<br />
+      ооооооооо<br />
+      оооооооо<br />
+      ...<br />
+      оо<br />
+      о<br />
+      __________________________________<br />
+    </p>
+    <script>
+      for (let i = 12, result = "оооооооооооо"; i > 0; i--) {
+        document.write(`${result} <br>`);
+        result = result.substring(0, result.length - 1);
+      }
+    </script>
+  </body>
+</html>

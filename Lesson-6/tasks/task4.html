@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №6 Задача 5</title>
+  </head>
+  <body>
+    <h2>Задача 5</h2>
+    <p>
+      Інвестор вклав S тис. грн на 20 років під 20% річних. Визначити за
+      допомогою циклів суму, яку він одержить (без оподаткування).
+    </p>
+    <script>
+      // 1. Вводимо дані
+      let depositSum = parseInt(prompt("Введіть суму депозиту", 0));
+      let depositYears = 20;
+      let depositPercentYearly = 0.2
+      let depositYearlyIncome
+      let result = 0
+      let resultHard = 0
+      // 2. Знаходимо результат
+      for (let i = 0; i < depositYears; i++) {
+        result += depositSum * depositPercentYearly
+      }
+      // 3. Виводимо на екран.
+      document.write(`Сума депозиту: ₴ ${depositSum}<br>
+      Сума отриманих річних за ${depositYears} років: ₴ ${result.toFixed(2)}<br><br>`)
+    </script>
+  </body>
+</html>

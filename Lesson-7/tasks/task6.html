@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №7 Задача 5</title>
+  </head>
+  <body>
+    <h2>Задача 5</h2>
+    <p>
+      Створити окремі функції, які переводять: <br /><br />
+      Сантиметри у дюйми;<br />
+      Кілограми у фунти;<br />
+      Кілометри у милі.
+    </p>
+    <script>
+      function cmToInches(cm) {
+        return cm / 2.54;
+      }
+      function kgToPounds(kg) {
+        return kg * 2.205;
+      }
+      function kmToMiles(km) {
+        return km / 1.609;
+      }
+      document.write(`В дюймах: ${cmToInches(34).toFixed(2)}<br>
+                В фунтах: ${kgToPounds(100).toFixed(2)}<br>
+                В дюймах: ${kmToMiles(85).toFixed(2)}
+`);
+    </script>
+  </body>
+</html>

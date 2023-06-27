@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №7 Задача 3</title>
+  </head>
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+      Створити окремі функції, які для 4 чисел знаходять: <br /><br />
+      1)суму;<br />
+      2)добуток;<br />
+      3)середнє арифметичне;<br />
+      4)мінімальне значення.
+    </p>
+    <script>
+      function getSum(num1, num2, num3, num4) {
+        return num1 + num2 + num3 + num4;
+      }
+      function getProduct(num1, num2, num3, num4) {
+        return num1 * num2 * num3 * num4;
+      }
+      function getAverage(num1, num2, num3, num4) {
+        return (num1 + num2 + num3 + num4) / 4;
+      }
+      function getMinValue(num1, num2, num3, num4) {
+        let min;
+        if (num1 < num2) {
+          min = num1;
+          if (min > num3) {
+            min = num3;
+            if (min > num4) min = num4;
+          }
+        } else min = num2;
+        return min;
+      }
+
+      document.write(`${getSum(12, 12, 12, 12)} <br>`);
+      document.write(`${getProduct(12, 12, 12, 12)} <br>`);
+      document.write(`${getAverage(12, 12, 12, 12)} <br>`);
+      document.write(`${getMinValue(5, 12, -3, 1)} <br>`);
+    </script>
+  </body>
+</html>
