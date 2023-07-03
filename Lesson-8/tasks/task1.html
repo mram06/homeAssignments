@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №8 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+      з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+      хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча
+      би одна трійка)).
+    </p>
+    <script>
+      let marks = [];
+      let userSubjectCount = parseInt(prompt("Введіть кількість предметів"));
+
+      for (let i = 0; i < userSubjectCount; i++) {
+        let userEnteredMarks = parseInt(prompt("Введіть оцінку", 0));
+        marks.push(userEnteredMarks);
+      }
+      function averageMark(marks) {
+        let sum = 0;
+        for (let i = 0; i < marks.length; i++) {
+          sum += marks[i];
+        }
+        return sum / marks.length;
+      }
+      function lowestMark(marks) {
+        let result = marks[0];
+        for (let i = 1; i < marks.length; i++) {
+          if (marks[i] < result) result = marks[i];
+        }
+        return result;
+      }
+      function studentStatus(marks) {
+        let result;
+        switch (lowestMark(marks)) {
+          case 1:
+          case 2:
+            result = "Двійочник";
+            break;
+          case 3:
+            result = "Трійочник";
+            break;
+          case 4:
+            result = "Хорошист";
+            break;
+          case 5:
+            result = "Відмінник";
+            break;
+          default:
+            result = "Помилка";
+            break;
+        }
+        return result;
+      }
+      document.write(`Середній бал: ${averageMark(marks)} <br>
+                Найнижча оцінка: ${lowestMark(marks)} <br>
+                Статус студента: ${studentStatus(marks)}`);
+    </script>
+  </body>
+</html>

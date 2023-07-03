@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №8 Задача 3</title>
+  </head>
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+      Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+    </p>
+    <script>
+      let studentsNames = [
+        "Іван",
+        "Дмитро",
+        "Іван",
+        "Григорій",
+        "Владислав",
+        "Даніель",
+        "Олександр",
+        "Вячеслав",
+        "Іван",
+      ];
+      function getStudentNameCount(studentsNames) {
+        let ivansSum = 0;
+        for (let i = 0; i < studentsNames.length; i++) {
+          if (studentsNames[i] === "Іван") ivansSum++;
+        }
+        return ivansSum;
+      }
+      document.write(
+        `Кількість студентів з ім'ям Іван = ${getStudentNameCount(
+          studentsNames
+        )}`
+      );
+    </script>
+  </body>
+</html>

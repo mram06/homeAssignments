@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №8 Задача 5</title>
+  </head>
+  <body>
+    <h2>Задача 5</h2>
+    <p>
+      Дано послідовність оцінок учня. Підрахувати кількість: <br />
+      1) двійок <br />
+      2) кількість хороших оцінок (добре, відмінно); <br />
+      3) кількість оцінок, які нижче середнього.
+    </p>
+    <script>
+      let studentMarks = [2, 5, 4, 4, 5, 3, 2, 5, 4, 3, 4, 3, 3, 5, 2];
+      function getMarkF(studentMarks) {
+        let count = 0;
+        for (let i = 0; i < studentMarks.length; i++) {
+          if (studentMarks[i] === 2) count++;
+        }
+        return count;
+      }
+      function getMarkAB(studentMarks) {
+        let count = 0;
+        for (let i = 0; i < studentMarks.length; i++) {
+          if (studentMarks[i] === 5) count++;
+          if (studentMarks[i] === 4) count++;
+        }
+        return count;
+      }
+      function getMarksLowerAverage(studentMarks) {
+        let sum = 0;
+        let count = 0;
+        for (let i = 0; i < studentMarks.length; i++) {
+          sum += studentMarks[i];
+        }
+        for (let i = 0; i < studentMarks.length; i++) {
+          if (studentMarks[i] < sum / studentMarks.length) count++;
+        }
+        return count;
+      }
+
+      document.write(`Двійок: ${getMarkF(studentMarks)}<br>
+                Кількість хороших оцінок (добре, відмінно): ${getMarkAB(
+                  studentMarks
+                )}<br>
+                Кількість оцінок, які нижче середнього: ${getMarksLowerAverage(
+                  studentMarks
+                )}
+`);
+    </script>
+  </body>
+</html>
