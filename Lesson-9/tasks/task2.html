@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №9 Задача 2</title>
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Користувач вводить кількість елементів. Створити масив, у якому перша
+      половина заповнена 1-цями, а друга заповнена 7-ками.
+    </p>
+    <script>
+      let userArrayLength = parseInt(
+        prompt("Ввведіть кількість елементів масиву")
+      );
+      let userArray = [];
+      let userArrayLengthHalf = parseInt(userArrayLength / 2);
+      function pushInArray(userArrayLengthHalf, number) {
+        for (let i = 0; i < userArrayLengthHalf; i++) {
+          userArray.push(number);
+        }
+      }
+      pushInArray(userArrayLengthHalf, 1);
+      pushInArray(userArrayLengthHalf, 7);
+      document.write(userArray);
+    </script>
+  </body>
+</html>
