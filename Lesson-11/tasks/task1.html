@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №11 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Знайти суми елементів у вказаній області (масиви розділені на 4 рівні частини -  не звертаємо увагу на криві малюнки ☺ )
+    </p>
+    <img src="hw11.png" alt="" width="100"><br>
+    <script>
+      // Задача 1. Знайти суми елементів у вказаній області (масиви розділені на 4 рівні частини -  не звертаємо увагу на криві малюнки ☺ )
+      let arr = [[43, 54, 5, 5],[67, 7, 32, 2],[5, 55, 9, 43],[64, 1, 5, 43]];
+      document.write(`Початковий масив:<br> ${arr[0]}<br>${arr[1]}<br>${arr[2]}<br>${arr[3]}<br><br>`)
+
+      // 1)
+      function arraySumQuarter(rowStart, rowEnd, colStart, colEnd, array){
+        let sum = 0
+        for (let i = rowStart; i < rowEnd; i++) {
+          for (let j = colStart; j < colEnd; j++) {
+            sum += array[i][j]
+          }
+        }
+        return sum
+      }
+      // -----------------------------------------------------------------------
+
+      document.write(`
+      1) ${arraySumQuarter(0, 2, 0, 2, arr)}<br>
+      2) ${arraySumQuarter(0, 2, 2, 4, arr)}<br>
+      3) ${arraySumQuarter(2, 4, 0, 2, arr)}<br>
+      4) ${arraySumQuarter(2, 4, 2, 4, arr)}<br><br>
+      `)
+
+      // 5) Суму парних рядків
+      function sumEvenRows(array){
+        let sum = 0
+        for (let i = 1; i < array.length; i += 2) {
+          for (let j = 0; j < array.length; j++) {
+            sum += array[i][j]
+          }
+        }
+        return sum
+      }
+      document.write(`5) Сума парних рядків ${sumEvenRows(arr)}<br>`)
+      // -----------------------------------------------------------------------
+
+      // 6) Суму непарних стовпців
+      function sumOddRows(array){
+        let sum = 0
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < array.length; j += 2) {
+            sum += array[i][j]
+          }
+        }
+        return sum
+      }
+
+      document.write(`6) Сума непарних стовпців ${sumOddRows(arr)}<br>`)
+    </script>
+  </body>
+</html>

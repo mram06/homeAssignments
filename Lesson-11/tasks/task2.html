@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №11 Задача 2</title>
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+    </p>
+    <script>
+      // Задача 2. Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+      let arr = [
+        [1000, 2500, 5000, 4500, 1000, 1000, 6000],
+        [2000, 2500, 6000, 3500, 5000, 4000, 4000],
+        [5000, 5500, 6000, 7500, 1000, 8000, 3000],
+        [6000, 1500, 7500, 3500, 7000, 4000, 5000],
+        [1000, 2500, 8000, 1500, 9000, 1000, 6000],
+      ];
+      document.write(
+        `Початковий масив:<br> ${arr[0]}<br>${arr[1]}<br>${arr[2]}<br>${arr[3]}<br>${arr[4]}<br><br>`
+      );
+      // -----------------------------------------------------------------------
+      // 1) загальний прибуток кожного масиву за тиждень;
+      function incomeEveryShopPerWeek(array) {
+        let incomeShops = [];
+        for (let i = 0; i < array.length; i++) {
+          let sum = 0
+          for (let j = 0; j < array[i].length; j++) {
+            sum += array[i][j]
+          }
+          incomeShops.push(sum)
+        }
+        return incomeShops
+      }
+      document.write(`1) загальний прибуток кожного масиву за тиждень ${incomeEveryShopPerWeek(arr)}<br><br>`)
+      // -----------------------------------------------------------------------
+
+      // 2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+      function allIncomesOfAllShopsByDays(dayNum, array){
+        let sum = 0
+        for (let i = 0; i < array.length; i++) {
+          sum += array[i][dayNum]
+        }
+        return sum
+      }
+
+      // document.write(`2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);<br><br>
+      // Понеділок: ${allIncomesOfAllShopsByDays(0, arr)} ₴<br>
+      // Вівторок: ${allIncomesOfAllShopsByDays(1, arr)} ₴<br>
+      // Середа: ${allIncomesOfAllShopsByDays(2, arr)} ₴<br>
+      // Четвер: ${allIncomesOfAllShopsByDays(3, arr)} ₴<br>
+      // П'ятниця: ${allIncomesOfAllShopsByDays(4, arr)} ₴<br>
+      // Субота: ${allIncomesOfAllShopsByDays(5, arr)} ₴<br>
+      // Неділя: ${allIncomesOfAllShopsByDays(6, arr)} ₴<br>
+      // `)
+
+      document.write('2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);<br><br>')
+      for (let i = 0; i < 7; i++) {
+        let days = ['Понеділок:', 'Вівторок:', 'Середа:', 'Четвер:', 'П`ятниця:', 'Субота:', 'Неділя:']
+        document.write(days[i], ' ', allIncomesOfAllShopsByDays(i, arr), ' ₴<br>')
+      }
+      // -----------------------------------------------------------------------
+
+      // 3) загальний прибуток за робочі дні
+      function workingDayIncomeSum(array){
+        let sum = 0
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < 5; j++) {
+            sum += array[i][j]
+          }
+        }
+        return sum
+      }
+
+      document.write(`<br>3) загальний прибуток за робочі дні - ${workingDayIncomeSum(arr)} ₴`)
+      // -----------------------------------------------------------------------
+
+      // 4) загальний прибуток за вихідні дні
+      function weekendsDayIncomeSum(array){
+        let sum = 0
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 5; j < 7; j++) {
+            sum += array[i][j]
+          }
+        }
+        return sum
+      }
+
+      document.write(`<br>4) загальний прибуток за вихідні дні - ${weekendsDayIncomeSum(arr)} ₴`)
+
+      // -----------------------------------------------------------------------
+
+      // 5) максимальний прибуток за середу
+      function maxIncomeOnWednesday(array){
+        let wednesdayIncomeArray = []
+        for (let i = 0; i < array.length; i++) {
+          wednesdayIncomeArray.push(array[i][2])
+        }
+        return Math.max(...wednesdayIncomeArray)
+      }
+
+      document.write(`<br>5) максимальний прибуток за середу - ${maxIncomeOnWednesday(arr)} ₴`)
+      // -----------------------------------------------------------------------
+
+    </script>
+  </body>
+</html>
