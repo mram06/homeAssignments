@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №13 Задача 4</title>
+  </head>
+  <body>
+    <h2>Задача 4</h2>
+    <p>
+      З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач». Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.
+    </p>
+    <img src="../task4.png" alt=""><br>
+    <script>
+      // Задача 4. З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач». Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.
+      let word = ["j", "a", "v", "a", "s", "c", "r", "i", "p", "t"];
+      function externalFunction(arr) {
+        let wordLength = word.length - 1;
+        let letterNumber = -1;
+        function internalFunction() {
+          if (letterNumber < wordLength) {
+            letterNumber++;
+            return word[letterNumber];
+          } else {
+            letterNumber = 0;
+            return word[letterNumber];
+          }
+        }
+        return internalFunction;
+      }
+      let counter = externalFunction(word);
+
+      alert('Вгадайте слово, це мова програмування')
+      let guessedLettersCounter = 0
+      for (let i = 0; i < word.length; i++) {
+        let userWordLetter = prompt()
+        if(counter() === userWordLetter) guessedLettersCounter++
+      }
+      document.write(`Загадане слово: "javascript"<br>Кількість вгаданих букв: ${guessedLettersCounter}`)
+    </script>
+  </body>
+</html>
