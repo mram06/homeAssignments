@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №14 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    </p>
+    <script>
+    // Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    // ----- Властивості ------
+    // назва компанії на час розробки (назву періодично змінюють)
+    // власник компанії
+    // споснсори (масив спонсорів)
+    //              * прізвище спонсора
+    //              * ім’я  спонсора
+    //              * сума вкладень спонсора
+    // рік випуску
+    // вартість сайту
+    let sitesData = [
+      {
+        companyName: "Epam",
+        owner: "Dave Smith",
+        sponsors: [
+          {
+            lastname: "Demchyshyn",
+            firstname: "Oles",
+            investmentSum: 1000,
+          },
+        ],
+        year: 2005,
+        price: 2000,
+      },
+      {
+        companyName: "Google",
+        owner: "Larry Page",
+        sponsors: [
+          {
+            lastname: "Smith",
+            firstname: "John",
+            investmentSum: 500,
+          },
+          {
+            lastname: "Johnson",
+            firstname: "Mary",
+            investmentSum: 15000,
+          },
+        ],
+        year: 2020,
+        price: 5000,
+      },
+      {
+        companyName: "Microsoft",
+        owner: "Bill Gates",
+        sponsors: [
+          {
+            lastname: "Lee",
+            firstname: "David",
+            investmentSum: 1200,
+          },
+          {
+            lastname: "Wang",
+            firstname: "Emily",
+            investmentSum: 1500,
+          },
+          {
+            lastname: "Kim",
+            firstname: "Jin",
+            investmentSum: 2000,
+          },
+        ],
+        year: 2019,
+        price: 4000,
+      },
+      {
+        companyName: "Amazon",
+        owner: "Jeff Bezos",
+        sponsors: [
+          {
+            lastname: "Chen",
+            firstname: "Michael",
+            investmentSum: 11111,
+          },
+        ],
+        year: 2005,
+        price: 11000,
+      },
+    ];
+
+    // Знайти:
+    // 1) загальну вартість усіх сайтів
+
+    let sitesPriceSum = sitesData.reduce(
+      (prevSum, site) => prevSum + site.price,
+      0
+    );
+    document.write(`1) загальну вартість усіх сайтів - ${sitesPriceSum} <br>`)
+
+    // 2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+    let sitesCountBetween2000and2009Years = sitesData.reduce(
+      (prevCount, site) =>
+        2000 <= site.year && site.year < 2009 ? prevCount + 1 : prevCount,
+      0
+    );
+    document.write(`2) кількість сайтів, що було зроблено між 2000 та 2009 рр. - ${sitesCountBetween2000and2009Years} <br>`)
+
+    // 3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+    function getSitesCountSponsorsInvestMoreThan10000(data) {
+      let counter = 0;
+      for (const site of data) {
+        for (const sponsor of site.sponsors) {
+          if (sponsor.investmentSum > 10000) counter++;
+        }
+      }
+      return counter;
+    }
+
+    let sitesCountSponsorsInvestMoreThan10000 =
+      getSitesCountSponsorsInvestMoreThan10000(sitesData);
+    
+      document.write(`3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000 - ${sitesCountSponsorsInvestMoreThan10000} <br>`)
+
+    // 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+    function getAllSponsorsList(data) {
+      let arr = [];
+      for (const site of data) {
+        for (const sponsor of site.sponsors) {
+          arr.push(sponsor.firstname + " " + sponsor.lastname);
+        }
+      }
+      return arr;
+    }
+    let allSponsorsList = getAllSponsorsList(sitesData);
+
+    document.write(`4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив) - ${allSponsorsList} <br>`)
+
+
+    // 5) знайти рік, коли прибуток був найбільшим
+    function getYearWhenMaxProfit(data) {
+      let maxProfitSite = data.reduce((prevProfit, site) =>
+        site.price > prevProfit.price ? site : prevProfit
+      );
+      return maxProfitSite.year;
+    }
+    let yearWhenMaxProfit = getYearWhenMaxProfit(sitesData);
+    document.write(`5) знайти рік, коли прибуток був найбільшим - ${yearWhenMaxProfit} <br>`)
+
+    // 6) упорядкувати список за спаданням прибутку
+    function insertionSort(data) {
+      let copiedData = JSON.parse(JSON.stringify(data));
+      for (let i = 1; i < copiedData.length; i++) {
+        let currentProfit = copiedData[i].price;
+        let currentIndex = copiedData[i];
+        let prevIndex = i - 1;
+        while (prevIndex >= 0 && currentProfit > copiedData[prevIndex].price) {
+          copiedData[prevIndex + 1] = copiedData[prevIndex];
+          prevIndex -= 1;
+        }
+        copiedData[prevIndex + 1] = currentIndex;
+      }
+      return copiedData;
+    }
+    let listByPriceDescending = insertionSort(sitesData);
+    // document.write(JSON.stringify(listByPriceDescending));
+
+    // 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+    let sitesPriceLessThan10000 = [];
+    let sitesPriceMoreThan10000 = [];
+    for (const site of JSON.parse(JSON.stringify(sitesData))) {
+      if (site.price < 10000) sitesPriceLessThan10000.push(site);
+      if (site.price > 10000) sitesPriceMoreThan10000.push(site);
+    }
+
+    // let sitesPriceLessThan10000 = JSON.parse(
+    //   JSON.stringify(sitesData.filter((site) => site.price < 10000))
+    // );
+    // let sitesPriceMoreThan10000 = JSON.parse(
+    //   JSON.stringify(sitesData.filter((site) => site.price > 10000))
+    // );
+    //====================================================
+    </script>
+  </body>
+</html>
