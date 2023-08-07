@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №15 Задача 2</title>
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>Створити об’єкт «Авто».</p>
+    <script>
+      // Задача 2. Створити об’єкт «Авто».
+      // Авто
+
+      // Поля(властивості)
+      // Марка
+      // Розмір бака
+      // Кількість наявних літрів
+      // Кількість місць
+      // Кількість пасажирів
+      // Методи (дії)
+      // Заправка на вказану кількість літрів
+      // Виведення кількості пасажирів
+      // Додавання пасажирів
+      // Висадка пасажирів
+
+      let car = {
+        make: "Skoda",
+        model: "Octavia",
+        currentTankLitres: 30,
+        seatsCount: 5,
+        passengersCount: 3,
+
+        fillTank: function (litres) {
+          this.currentTankLitres += litres;
+        },
+        getPassengerCount: function () {
+          return this.passengersCount;
+        },
+        addPassengers: function (count) {
+          this.passengersCount += count;
+        },
+        deletePassengers: function (count) {
+          this.passengersCount -= count;
+        },
+        toString: function () {
+          return `Марка: ${this.make} <br>
+    Модель: ${this.model} <br>
+    Наявна кількість пального: ${this.currentTankLitres} <br>
+    Кількість місць: ${this.seatsCount} <br>
+    Кількість пасажирів: ${this.passengersCount}`;
+        },
+      };
+
+      car.fillTank(5);
+      car.addPassengers(1);
+      car.deletePassengers(3);
+      document.write(`${car.toString()} <br><br>`);
+      document.write(`Метод кількість пасажирів: ${car.getPassengerCount()}`);
+    </script>
+  </body>
+</html>

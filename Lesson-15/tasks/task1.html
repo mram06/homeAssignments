@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №15 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є
+      заєць і 0 в іншому випадку.
+    </p>
+    <script>
+      // Поля(властивості)
+      // Масив, у якому зберігається поле з зайцями
+      // Методи (дії)
+      // Метод пострілу (задається позиція пострілу)
+      // Виведення ігрового поля
+
+      let shootingGallery = {
+        field: [0, 0, 1, 0, 1, 1, 0, 0],
+        showField: function () {
+          return document.write(this.field);
+        },
+        shoot: function () {
+          let userShoot = parseInt(
+            prompt("Введіть індекс поля в яке ви стріляєте")
+          );
+          if (this.field[userShoot] === 1) alert("Ви влучили!");
+          else alert("Ви промазали");
+        },
+      };
+
+      shootingGallery.showField();
+      shootingGallery.shoot();
+    </script>
+  </body>
+</html>

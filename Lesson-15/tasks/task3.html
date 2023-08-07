@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №15 Задача 3</title>
+  </head>
+  <body>
+    <h2>Задача 3</h2>
+    <p>Розробити клас MultChecker для перевірки таблиці множення</p>
+    <script>
+      // Задача 3. Розробити клас MultChecker для перевірки таблиці множення
+      // Поля
+      // Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+      // Кількість правильних відповідей
+      // Кількість неправильних відповідей
+      // Методи
+      // Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+      // Перевірка правильності вказаної відповіді
+      // render
+
+      class MultChecker {
+        constructor(initNumber) {
+          this.number = initNumber;
+          this.trueAnswersCount = 0;
+          this.falseAnswersCount = 0;
+        }
+        getRandomExample() {
+          let secondNumber = Math.floor(Math.random() * (10 - 1 + 1));
+          return secondNumber;
+        }
+        exampleChecker() {
+          let secondNumber = this.getRandomExample();
+          alert(`${this.number} * ${secondNumber}`);
+          let userAnswer = parseInt(prompt("Введіть відповідь"));
+          if (userAnswer === this.number * secondNumber) {
+            alert("Правильна відповідь!");
+            this.trueAnswersCount++;
+          } else {
+            alert("Неправильна відповідь");
+            this.falseAnswersCount++;
+          }
+        }
+        toString() {
+          return `Задане число: ${this.number}<br>
+    Кількість правильних відповідей: ${this.trueAnswersCount}<br>
+    Кількість неправильних відповідей: ${this.falseAnswersCount}<br>`;
+        }
+      }
+      let test1 = new MultChecker(3);
+      test1.exampleChecker();
+      document.write(test1.toString());
+    </script>
+  </body>
+</html>

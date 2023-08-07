@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №15 Задача 4</title>
+  </head>
+  <body>
+    <h2>Задача 4</h2>
+    <p>Розробити клас Baner</p>
+    <img src="../task4.png" alt="" /><br />
+    <script>
+      // Задача 4. Розробити клас Baner
+      // Поля
+      // Масив об’єктів ( графічних зображень та посилань на сайти)
+
+      // методи
+      // Метод випадкового вибору об’єкта (графічного зображення та посилання)
+      // Метод виведення випадкового банера
+
+      class Baner {
+        constructor() {
+          this.images = [
+            {
+              name: "McDonalds",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png",
+              site: "https://www.mcdonalds.com/ua/uk-ua.html",
+            },
+            {
+              name: "KFC",
+              image: "https://www.kfc-ukraine.com/admin/files/3190.svg",
+              site: "https://www.kfc-ukraine.com/",
+            },
+            {
+              name: "Burger King",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/640px-Burger_King_logo_%281999%29.svg.png",
+              site: "https://www.bk.com/",
+            },
+          ];
+        }
+        getRandomObject() {
+          let randomIndex = Math.floor(Math.random() * this.images.length);
+          document.write(`<img src ="${this.images[randomIndex].image}" width=100><br>
+    <a href="${this.images[randomIndex].site}">${this.images[randomIndex].name}</a><br>
+    `);
+        }
+        getRandomBaner() {
+          let randomIndex = Math.floor(Math.random() * this.images.length);
+          document.write(
+            `<img src ="${this.images[randomIndex].image}" width=400><br>`
+          );
+        }
+      }
+      let test1 = new Baner();
+      test1.getRandomObject();
+      test1.getRandomBaner();
+    </script>
+  </body>
+</html>
