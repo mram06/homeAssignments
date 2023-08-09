@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №16 Задача 4</title>
+  </head>
+  <body>
+    <h2>Задача 4</h2>
+    <p>
+      Створити клас TBankomat, який моделює роботу банкомата. Клас повинен
+      містити поля для зберігання кількості купюр кожного із номіналів від 5 до
+      200 гривень. Реалізувати методи знаходження максимальної та мінімальної
+      сум, які може видати банкомат, та метод зняття деякої суми.
+    </p>
+    <script>
+      // Задача 4. Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості купюр кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат, та метод зняття деякої суми.
+
+      class TBankomat {
+        constructor(
+          init5UAH,
+          init10UAH,
+          init20UAH,
+          init50UAH,
+          init100UAH,
+          init200UAH
+        ) {
+          this.UAH5 = init5UAH;
+          this.UAH10 = init10UAH;
+          this.UAH20 = init20UAH;
+          this.UAH50 = init50UAH;
+          this.UAH100 = init100UAH;
+          this.UAH200 = init200UAH;
+        }
+        getSum() {
+          let s =
+            this.UAH5 * 5 +
+            this.UAH10 * 10 +
+            this.UAH20 * 20 +
+            this.UAH50 * 50 +
+            this.UAH100 * 100 +
+            this.UAH200 * 200;
+          return s;
+        }
+        getMinWithdrawSum() {
+          if (this.UAH5 > 0) return 5;
+          if (this.UAH10 > 0) return 10;
+          if (this.UAH20 > 0) return 20;
+          if (this.UAH50 > 0) return 50;
+          if (this.UAH100 > 0) return 100;
+          if (this.UAH200 > 0) return 200;
+        }
+
+        toString() {
+          return `Сума грошей в банкоматі: ₴ ${this.getSum()}<br> Кількість купюр по ₴ 5 - ${
+            this.UAH5
+          }<br> Кількість купюр по ₴ 10 - ${
+            this.UAH10
+          }<br> Кількість купюр по ₴ 20 - ${
+            this.UAH20
+          }<br> Кількість купюр по ₴ 50 - ${
+            this.UAH50
+          }<br> Кількість купюр по ₴ 100 - ${
+            this.UAH100
+          }<br> Кількість купюр по ₴ 200 - ${this.UAH200}<br>`;
+        }
+      }
+      let r1 = new TBankomat(0, 5, 6, 3, 6, 2);
+      document.write(r1);
+      r1.getMinWithdrawSum();
+      document.write(r1.getMinWithdrawSum());
+    </script>
+  </body>
+</html>

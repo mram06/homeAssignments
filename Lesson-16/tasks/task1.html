@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №16 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата
+      представляється структурою із трьома полями. Реалізувати методи
+      збільшення/зменшення дати на певну кількість днів, місяців чи років.
+      Введення та виведення дати реалізувати за допомогою методу toString.
+    </p>
+    <script>
+      // Задача 1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та виведення дати реалізувати за допомогою методу  toString.
+
+      class TDate {
+        #day;
+        #month;
+        constructor(initDay, initMonth, initYear) {
+          this.Day = initDay;
+          this.Month = initMonth;
+          this.year = initYear;
+        }
+        get Day() {
+          return this.#day;
+        }
+        set Day(newValue) {
+          if (newValue < 0 || 31 < newValue)
+            throw new Error("Значеення дня некоректне");
+          this.#day = newValue;
+        }
+        get Month() {
+          return this.#month;
+        }
+        set Month(newValue) {
+          if (newValue < 0 || 12 < newValue)
+            throw new Error("Значеення місяця некоректне");
+          this.#month = newValue;
+        }
+
+        increaseDate(day, month, year) {}
+
+        toString() {
+          return `${this.#day} - ${this.#month} - ${this.year}`;
+        }
+      }
+      let p1 = new TDate(31, 12, 2002);
+      document.write(p1);
+    </script>
+  </body>
+</html>

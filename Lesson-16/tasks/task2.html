@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №16 Задача 2</title>
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Створити клас TMoney для роботи з грошовими сумами. Сума повинна
+      зберігатися у вигляді доларового еквіваленту. Реалізувати методи
+      додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та
+      визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс
+      долара зберігати в окремому полі.
+    </p>
+    <script>
+      // Задача 2. Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+
+      class TMoney {
+        #usdRate;
+        constructor(initAmountInUSD, initUSDRate) {
+          this.amountInUSD = initAmountInUSD;
+          this.UsdRate = initUSDRate;
+        }
+        toString() {
+          return `Курс долара - ₴${this.UsdRate.toFixed(2)}<br>
+            Баланс - $${this.amountInUSD.toFixed(2)}<br><br>
+    `;
+        }
+        get UsdRate() {
+          return this.#usdRate;
+        }
+        set UsdRate(rate) {
+          if (rate < 35 || rate > 40)
+            throw new Error("Помилка (курс не відповідає вимогам)");
+          this.#usdRate = rate;
+        }
+
+        addMoney(money) {
+          this.amountInUSD += money / 37;
+        }
+        withdrawMoney(money) {
+          this.amountInUSD -= money / 36;
+        }
+        getUSDRateWhenAmountIncrease100UAH() {
+          return (this.amountInUSD * 37 + 100) / this.amountInUSD;
+        }
+      }
+
+      let p1 = new TMoney(2000, 37);
+      document.write(p1);
+      p1.addMoney(10000);
+      p1.withdrawMoney(10000);
+      document.write(p1);
+      document.write(p1.getUSDRateWhenAmountIncrease100UAH().toFixed(2));
+    </script>
+  </body>
+</html>
