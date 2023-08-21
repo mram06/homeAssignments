@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №17 Задача 1</title>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)
+    </p>
+    <script>
+      // 1. Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)
+      class ArrayChecker {
+        static positiveCount(array) {
+          return array.reduce(
+            (prevCount, number) => (number > 0 ? prevCount + 1 : prevCount),
+            0
+          );
+        }
+        static negativeCount(array) {
+          return array.reduce(
+            (prevCount, number) => (number < 0 ? prevCount + 1 : prevCount),
+            0
+          );
+        }
+        static certainCount(array, number) {
+          return array.reduce(
+            (prevCount, numberArr) =>
+              numberArr === number ? prevCount + 1 : prevCount,
+            0
+          );
+        }
+        constructor(array, number) {
+          this.array = array;
+          this.number = number;
+        }
+      }
+      document.write(
+        ArrayChecker.certainCount([1, 5, 7, 3, 3, 6, 4, 3, -5, -3, -10], 5)
+      );
+    </script>
+  </body>
+</html>

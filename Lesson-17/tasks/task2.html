@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №17 Задача 2</title>
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
+    </p>
+    <script>
+      // 2. Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
+      class ServiceCar {
+        static car;
+        constructor(driver, brand, licensePlate) {
+          if (ServiceCar.car) return ServiceCar.car;
+          this.driver = driver;
+          this.brand = brand;
+          this.licensePlate = licensePlate;
+          ServiceCar.car = this;
+        }
+        toString() {
+          return `Водій: ${this.driver},<br> Марка: ${this.brand},<br> Номерний знак: ${this.licensePlate}<br>`;
+        }
+      }
+      let car1 = new ServiceCar("Dmytro", "Skoda", "AA2441XI");
+      let car2 = new ServiceCar("Olga", "Volkswagen", "AA2134FD");
+      document.write(car1, car2);
+    </script>
+  </body>
+</html>

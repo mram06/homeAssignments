@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №17 Задача 4</title>
+  </head>
+  <body>
+    <h2>Задача 4</h2>
+    <p>
+      Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис), назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки організувати додавання/вилучення книг та  вибір книг за назвою, за ПІБ автора, за видавництвом.
+    </p>
+    <script>
+      // 4. Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис), назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки організувати додавання/вилучення книг та  вибір книг за назвою, за ПІБ автора, за видавництвом.
+      class Author {
+        constructor(firstName, lastName, yearOfBirth, description) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.yearOfBirth = yearOfBirth;
+          this.description = description;
+        }
+      }
+
+      class Book {
+        constructor(id, bookName, genre, publisher) {
+          this.id = id;
+          this.bookName = bookName;
+          this.genre = genre;
+          this.publisher = publisher;
+        }
+      }
+      class Library {
+        constructor(books = []) {
+          this.books = books;
+        }
+        addBook(book) {
+          this.books.push(book);
+        }
+        deleteBook(id) {
+          const findIndexById = this.books.findIndex((book) => book.id === id);
+          this.books.splice(findIndexById, 1);
+        }
+        findBookByName(name) {
+          let book = this.books.filter((book) => book.name === name);
+          return book;
+        }
+        findBookByAuthor(name) {
+          let author = this.books.filter((book) => book.author === name);
+          return author;
+        }
+        findBookByPublisher(name) {
+          let publisher = this.books.filter((book) => book.publisher === name);
+          return publisher;
+        }
+        toString() {
+          let res = "";
+          this.books.forEach((book, index) => {
+            res += `${index + 1}. _ ${book.bookName} _  ${book.genre} _ ${
+              book.publisher
+            }<br>`;
+          });
+          return res;
+        }
+      }
+
+      const books = [
+        {
+          id: 1,
+          bookName: "The Great Gatsby",
+          genre: "Classic",
+          publisher: "Scribner",
+          author: {
+            firstName: "F. Scott",
+            lastName: "Fitzgerald",
+            yearOfBirth: 1896,
+            description: "American novelist and short story writer.",
+          },
+        },
+        {
+          id: 2,
+          bookName: "Harry Potter and the Sorcerer's Stone",
+          genre: "Fantasy",
+          publisher: "Scholastic",
+          author: {
+            firstName: "J.K.",
+            lastName: "Rowling",
+            yearOfBirth: 1965,
+            description: "British author, screenwriter, and producer.",
+          },
+        },
+        {
+          id: 3,
+          bookName: "1984",
+          genre: "Dystopian",
+          publisher: "Secker & Warburg",
+          author: {
+            firstName: "George",
+            lastName: "Orwell",
+            yearOfBirth: 1903,
+            description: "English novelist, essayist, journalist, and critic.",
+          },
+        },
+        {
+          id: 4,
+          bookName: "Pride and Prejudice",
+          genre: "Romance",
+          publisher: "T. Egerton, Whitehall",
+          author: {
+            firstName: "Jane",
+            lastName: "Austen",
+            yearOfBirth: 1775,
+            description: "English novelist known for her romantic fiction.",
+          },
+        },
+        {
+          id: 5,
+          bookName: "The Hobbit",
+          genre: "Fantasy",
+          publisher: "George Allen & Unwin",
+          author: {
+            firstName: "J.R.R.",
+            lastName: "Tolkien",
+            yearOfBirth: 1892,
+            description: "English writer, poet, philologist, and academic.",
+          },
+        },
+      ];
+
+      console.log(books);
+
+      let library = new Library(books);
+      document.write(library);
+
+      let book1 = new Book(6, "The Witcher", "Fantasy", "Gollancz");
+      let author1 = new Author(
+        "Andrzej",
+        "Sapkowski",
+        1948,
+        "Polish fantasy writer, essayist, translator and a trained economist"
+      );
+      console.log(book1);
+      console.log(author1);
+
+      library.addBook(book1);
+
+      document.write("<br>" + library);
+    </script>
+  </body>
+</html>

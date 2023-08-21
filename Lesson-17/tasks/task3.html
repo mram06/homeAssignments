@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №17 Задача 3</title>
+  </head>
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+        Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує про якусь подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було. Зробити так, щоб неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки таймера, метод зміни повідомлення без зупинки таймера.
+    </p>
+    <script>
+      // 3. Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує про якусь подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було. Зробити так, щоб неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки таймера, метод зміни повідомлення без зупинки таймера.
+      class Reminder {
+        static interval = 2000;
+        static reminder;
+        constructor(message) {
+          if (Reminder.reminder) return Reminder.reminder;
+          this.message = message;
+          this.countOfTimes = 0;
+          this.firstInterval = null;
+          Reminder.reminder = this;
+        }
+        run() {
+          this.firstInterval = setInterval(() => {
+            this.countOfTimes += 1;
+            document.write(`<br>${this.countOfTimes}) ${this.message}<br>`);
+          }, Reminder.interval);
+        }
+        stopTimer() {
+          clearInterval(this.firstInterval);
+        }
+        updateMessage(message) {
+          this.message = message;
+          this.countOfTimes = 0;
+        }
+      }
+
+      let rem1 = new Reminder("Сходити в магазин");
+      rem1.run();
+      // rem1.updateMessage('test')
+      // rem1.stopTimer();
+    </script>
+  </body>
+</html>
