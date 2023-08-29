@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №17 Задача 3</title>
+  </head>
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+      Користувач задає рік народження. Визначити кількість років користувача.
+    </p>
+    <label for="">
+      Введіть ваш рік народження<br>
+      <input type="text" id="birthYear">
+    </label><hr>
+    <label for="">
+      Кількість повних років<br>
+      <input type="text" id="yearsCount">
+    </label>
+    <script>
+      function yearsCount(){
+        const yearOfBirth = parseInt(document.getElementById('birthYear').value)
+        document.getElementById('yearsCount').setAttribute('value', 2023 - yearOfBirth)
+      }
+      document.getElementById('birthYear').onchange = yearsCount
+    </script>
+  </body>
+</html>

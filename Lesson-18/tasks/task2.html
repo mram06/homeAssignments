@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №18 Задача 2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Зробити конвертер валют (курси валют – константи у скрипті)
+    </p>
+    <label for="">
+      Сума в гривнях
+      <input type="text" id="uahInput">
+    </label><br>
+    <button class="btn btn-secondary" id="btn">Конвертувати</button><hr>
+    <label for="">
+      Сума в євро
+      <input type="text" id="eurOutput">
+    </label><br>
+    <label for="">
+      Сума в доларах
+      <input type="text" id="usdOutput">
+    </label>
+    <script>
+      const usdRate = 37
+      const eurRate = 40
+      function currency(){
+        const uahSum = parseFloat(document.getElementById('uahInput').value)
+        document.getElementById('eurOutput').setAttribute('value', `€ ${uahSum * eurRate}`)
+        document.getElementById('usdOutput').setAttribute('value', `$ ${uahSum * usdRate}`)
+      }
+      document.getElementById('btn').onclick = currency
+    </script>
+  </body>
+</html>

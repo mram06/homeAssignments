@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №18 Задача 1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>Розробити калькулятор</p>
+    <label for="">
+      First number
+      <input type="text" name="" id="first" /> </label
+    ><br />
+    <label for="">
+      Second number
+      <input type="text" name="" id="second" /> </label
+    ><br />
+    <button class="btn btn-primary">Додати</button>
+    <button class="btn btn-secondary">Відняти</button>
+    <button class="btn btn-success">Помножити</button>
+    <button class="btn btn-danger">Поділити</button>
+    <hr />
+    <label for="">
+      Результат
+      <input type="text" name="" id="result" />
+    </label>
+    
+    <script>
+      function plus() {
+        const firstNum = parseFloat(document.getElementById("first").value);
+        const secondNum = parseFloat(document.getElementById("second").value);
+        document.getElementById("result").setAttribute("value", firstNum + secondNum);
+      }
+      function minus() {
+        const firstNum = parseFloat(document.getElementById("first").value);
+        const secondNum = parseFloat(document.getElementById("second").value);
+        document.getElementById("result").setAttribute("value", firstNum - secondNum);
+      }
+      function multiply() {
+        const firstNum = parseFloat(document.getElementById("first").value);
+        const secondNum = parseFloat(document.getElementById("second").value);
+        document.getElementById("result").setAttribute("value", firstNum * secondNum);
+      }
+      function divide() {
+        const firstNum = parseFloat(document.getElementById("first").value);
+        const secondNum = parseFloat(document.getElementById("second").value);
+        document.getElementById("result").setAttribute("value", firstNum / secondNum);
+      }
+
+      const button = document.getElementsByTagName("button");
+      button[0].onclick = plus;
+      button[1].onclick = minus;
+      button[2].onclick = multiply;
+      button[3].onclick = divide;
+    </script>
+  </body>
+</html>

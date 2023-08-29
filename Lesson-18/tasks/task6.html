@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №18 Задача 6</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 6</h2>
+    <p>
+      Користувач задає кількість оцінок і натискає на кнопку «get table». В
+      результаті формується таблиця з input, куди користувач вводить оцінки.
+      Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+    </p>
+    <label for="">
+      <strong>Price number</strong>
+      <input type="text" id="priceNumber" /> </label
+    ><br />
+    <button id="getTableBtn" class="btn btn-primary">get table</button>
+    <hr />
+    <script>
+      function getTable() {
+        const inputCount = parseInt(
+          document.getElementById("priceNumber").value
+        );
+        for (let i = 0; i < inputCount; i++) {
+          const input = document.createElement("input");
+          input.setAttribute("class", "price__input");
+          document.body.append(input);
+        }
+        const hr = document.createElement("hr");
+        const getSumBtn = document.createElement("button");
+        getSumBtn.setAttribute("class", "btn btn-primary");
+        getSumBtn.setAttribute("id", "getSumBtn");
+        getSumBtn.innerText = "get sum";
+        document.body.append(hr, getSumBtn);
+        getSumBtn.onclick = getSum;
+      }
+      function getSum() {
+        const userPrices = document.getElementsByClassName("price__input");
+        let sum = 0;
+        for (let i = 0; i < userPrices.length; i++) {
+          sum += parseInt(userPrices[i].value);
+        }
+        const p = document.createElement("p");
+        p.innerText = `sum = ${sum / userPrices.length}`;
+        document.body.append(p);
+      }
+      document.getElementById("getTableBtn").onclick = getTable;
+    </script>
+  </body>
+</html>
