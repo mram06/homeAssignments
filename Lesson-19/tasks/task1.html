@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №19 Задача 1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Дано 10 рядків тексту «Hello!» у окремих div. При кліку на якийсь із них
+      усі наступні повинні бути зафарбовані у червоний колір.
+    </p>
+    <script>
+      class HelloDiv {
+        constructor(elCount, text) {
+          this.elCount = elCount;
+          this.text = text;
+        }
+        changeColor() {
+          let divEl = this;
+          while (divEl.nextElementSibling) {
+            divEl = divEl.nextElementSibling;
+            divEl.style.color = "red";
+          }
+        }
+        render() {
+          for (let i = 0; i < this.elCount; i++) {
+            const divEl = document.createElement("div");
+            divEl.innerText = this.text;
+            document.body.append(divEl);
+          }
+          const divList = document.querySelectorAll("div");
+          for (const div of divList) {
+            div.onclick = this.changeColor;
+          }
+        }
+      }
+      let r1 = new HelloDiv(10, "Hello!");
+      r1.render();
+    </script>
+  </body>
+</html>

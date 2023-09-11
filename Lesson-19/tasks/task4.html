@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №19 Задача 4</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 4</h2>
+    <p>
+      Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається
+      клік на якійсь із клітинок, то до відповідної таблиці додається червона
+      рамка (спробуйте додати можливість відображення кількості кліків біля
+      назви таблиці з використанням відповідно доданого для цього атрибута).
+    </p>
+    <div id="container"></div>
+    <script>
+      class Table {
+        addBorder() {
+          this.table.style.border = "1px solid red";
+        }
+        render(container) {
+          this.tdList = [];
+          this.table = document.createElement("table");
+          this.table.setAttribute("border", 1);
+          for (let i = 0; i < 3; i++) {
+            const tr = document.createElement("tr");
+            this.table.append(tr);
+            for (let j = 0; j < 3; j++) {
+              const td = document.createElement("td");
+              td.innerText = "X";
+              tr.append(td);
+              this.tdList.push(td);
+            }
+          }
+          const tdList = document.querySelectorAll("td");
+          for (const td of this.tdList) {
+            td.onclick = this.addBorder.bind(this);
+          }
+          if (container) document.querySelector(container).append(this.table);
+          return this.table;
+        }
+      }
+      for (let i = 0; i < 3; i++) {
+        const r1 = new Table();
+        r1.render("#container");
+      }
+    </script>
+  </body>
+</html>

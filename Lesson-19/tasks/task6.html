@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №19 Задача 6</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      .card {
+        border: 2px solid black;
+        min-height: 300px;
+        width: 200px;
+        padding: 3px;
+        gap: 5px;
+      }
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+      .participant {
+        border: 2px solid black;
+        padding: 2px;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Задача 6</h2>
+    <p>
+      Дано список спортсменів. Потрібно сформувати список тих, які будуть брати
+      участь у змаганні. При цьому є два стовпці. В одному відображені всі
+      спортсмени, в іншому – список тих, хто був вибраний. При натисканні на
+      зелену стрілку спортсмен переміщається у список для змагань. При
+      натисканні на червону стрілку спортсмен переміщається у загальний список.
+    </p>
+    <div class="container">
+      <div class="tournament">
+        <div>Загальний список</div>
+        <div class="card general"></div>
+      </div>
+      <div class="tournament">
+        <div>Обрані для змагання</div>
+        <div class="card selected"></div>
+      </div>
+    </div>
+    <script>
+      class Tournament {
+        constructor(name) {
+          this.name = name;
+        }
+        selectParticipant() {
+          const btn = this;
+          const participant = this.parentElement;
+          if (btn.className === "btn btn-success") {
+            document.querySelector(".selected").append(participant);
+            btn.innerText = "<---";
+            btn.className = "btn btn-danger";
+          } else if (btn.className === "btn btn-danger") {
+            document.querySelector(".general").append(participant);
+            btn.innerText = "--->";
+            btn.className = "btn btn-success";
+          }
+        }
+        render(containerSelector) {
+          const participant = document.createElement("div");
+          const participantName = document.createElement("div");
+          participantName.innerText = this.name;
+          participant.className = "participant";
+          participant.append(participantName);
+          const btn = document.createElement("button");
+          btn.className = "btn btn-success";
+          btn.innerText = "--->";
+          participant.append(btn);
+
+          btn.onclick = this.selectParticipant;
+
+          if (containerSelector)
+            document.querySelector(containerSelector).append(participant);
+          return participant;
+        }
+      }
+      let dataSet = [
+        "John Depp",
+        "Sara Wik",
+        "Den Miro",
+        "Alan Woo",
+        "Olga Sich",
+        "Ivan Hal",
+      ];
+      for (const name of dataSet) {
+        new Tournament(name).render(".general");
+      }
+    </script>
+  </body>
+</html>

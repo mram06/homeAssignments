@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №19 Задача 3</title>
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+      Дано 5 випадковим чином згенерованих нумерованих списків з рандомними
+      числами (кількість елементів у списку випадкова від 1 до 10, елементи
+      випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з
+      парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
+    </p>
+    <script>
+      class NumberLists {
+        constructor(listCount) {
+          this.listCount = listCount;
+        }
+        getRandomValue(minNum, maxNum) {
+          return minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+        }
+        getListOfRandomValues() {
+          let listOfValues = [];
+          for (let i = 0; i < this.listCount; i++) {
+            let array = [];
+            for (let j = 0; j < this.getRandomValue(1, 10); j++) {
+              array.push(this.getRandomValue(1, 100));
+            }
+            listOfValues.push(array);
+          }
+          return listOfValues;
+        }
+        changeBackground() {
+          const listOfDiv = document.querySelectorAll("div");
+          for (let i = 0; i < listOfDiv.length; i++) {
+            if (this.listOfValues[i].length % 2 === 0)
+              listOfDiv[i].style.backgroundColor = "green";
+            else listOfDiv[i].style.backgroundColor = "red";
+          }
+        }
+        render() {
+          this.listOfValues = this.getListOfRandomValues();
+          for (let i = 0; i < this.listOfValues.length; i++) {
+            const div = document.createElement("div");
+            div.innerText = this.listOfValues[i];
+            document.body.append(div);
+          }
+          const btn = document.createElement("button");
+          btn.innerText = "Get result";
+          btn.className = "btn btn-primary";
+          document.body.append(btn);
+          btn.onclick = this.changeBackground.bind(this);
+        }
+      }
+
+      let r1 = new NumberLists(5);
+      r1.render();
+    </script>
+  </body>
+</html>

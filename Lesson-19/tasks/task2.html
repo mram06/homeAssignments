@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №19 Задача 2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Дано 5 елементів input. При введенні значення у якийсь із них необхідно
+      автоматично заповнювати інші (усі попередні у спадному порядку(кожен
+      попередній має значення на 1 менше за наступний), усі наступні на 1 більше
+      (кожен наступне на 1 більше за попереднього)
+    </p>
+    <div id="container"></div>
+    <script>
+      class Input {
+        constructor(elCount) {
+          this.elCount = elCount;
+        }
+        fillNumbers() {
+          let thisInput = this;
+          let label = thisInput.parentElement;
+          const userValue = parseInt(thisInput.value);
+          let counter = userValue;
+          while (label.nextElementSibling) {
+            label = label.nextElementSibling;
+            let labelInput = label.lastElementChild;
+            labelInput.setAttribute("value", ++counter);
+          }
+          while (label.previousElementSibling) {
+            label = label.previousElementSibling;
+            let labelInput = label.lastElementChild;
+            labelInput.setAttribute("value", --counter);
+          }
+        }
+        render() {
+          for (let i = 0; i < this.elCount; i++) {
+            const label = document.createElement("label");
+            label.innerText = `Value ${i + 1}`;
+            const inpEl = document.createElement("input");
+            inpEl.setAttribute("type", "number");
+            label.append(inpEl);
+            document.getElementById("container").append(label);
+          }
+          const inpList = document.querySelectorAll("input");
+          for (const input of inpList) {
+            input.onchange = this.fillNumbers;
+          }
+        }
+      }
+
+      let r1 = new Input(5);
+      r1.render();
+    </script>
+  </body>
+</html>

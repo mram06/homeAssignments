@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №19 Задача 5</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      a{
+        text-decoration: none;
+        color: black;
+      }
+      img {
+        max-width: 100%;
+      }
+      .container {
+        display: flex;
+        gap: 10px;
+      }
+      .item {
+        border: 1px solid black;
+        width: 250px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .item__price {
+        font-size: 20px;
+        color: red;
+        font-weight: bold;
+      }
+      .card-border{
+        border: 3px solid rgb(15, 195, 15);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Задача 5</h2>
+    <p>
+      Відображаємо картки товарів, які користувач може вибирати. Вибраний товар
+      має зелену рамку (при кліку робити toogle з класом вибраного елемента)
+    </p>
+    <div class="container"></div>
+    </div>
+    <script>
+      class ProductItem {
+        constructor({ imgSrc, title, price }) {
+          this.imgSrc = imgSrc;
+          this.title = title;
+          this.price = price;
+        }
+        render(containerSelector) {
+          const item = document.createElement("a");
+          item.className = "item";
+          item.setAttribute('href', '#')
+
+          const img = document.createElement("img");
+          img.setAttribute("src", this.imgSrc);
+          img.className = "item__photo";
+
+          const title = document.createElement("div");
+          title.innerText = this.title;
+          title.className = "item__title";
+
+          const price = document.createElement("div");
+          price.innerText = this.price + " ₴";
+          price.className = "item__price";
+
+          item.append(img, title, price);
+
+          if (containerSelector)
+            document.querySelector(containerSelector).append(item);
+          return item;
+        }
+      }
+      let dataSet = [
+        {
+          imgSrc:
+            "https://content1.rozetka.com.ua/goods/images/big/144249716.jpg",
+          title: 'Ноутбук Apple MacBook Air 13" Space Gray',
+          price: 43499,
+        },
+        {
+          imgSrc:
+            "https://content1.rozetka.com.ua/goods/images/big/328968883.jpg",
+          title: 'Ноутбук Apple MacBook Pro 16" M2 Pro 2023 Silver',
+          price: 124499,
+        },
+        {
+          imgSrc:
+            "https://content.rozetka.com.ua/goods/images/big/334788278.jpg",
+          title: 'Ноутбук Lenovo IdeaPad Gaming 3 15IHU6',
+          price: 32999,
+        },
+        {
+          imgSrc:
+            "https://content.rozetka.com.ua/goods/images/big/323437245.jpg",
+          title: 'Ноутбук ASUS TUF Gaming F15 FX506HF-HN038',
+          price: 32499,
+        },
+
+      ];
+      
+      for (const item of dataSet) {
+        new ProductItem(item).render('.container')
+      }
+
+      const cards = document.querySelectorAll('.item')
+
+      for(const card of cards) {
+        card.onclick = function() {
+          card.classList.toggle('card-border')
+        }
+      }
+    </script>
+  </body>
+</html>
