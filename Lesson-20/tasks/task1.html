@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №20 Задача 1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      body{
+        position: relative;
+        overflow: hidden;
+      }
+      .star{
+        position: absolute;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій
+      частині екрану. Кожна зірка (це екземпляр класу Star) з певним кроком і
+      інтервалом збільшується від мінімального до максимального розміру. Як
+      тільки досягнути максимального розміру зірочка повинна з’являтися у іншій
+      випадковій позиції.
+    </p>
+    <script>
+      class Star {
+        setRandomPosition() {
+          const leftPosition = 5 + Math.floor(Math.random() * (500 - 5 + 1));
+          const topPosition = 5 + Math.floor(Math.random() * (500 - 5 + 1));
+
+          this.star.style.left = leftPosition + 'px'
+          this.star.style.top = topPosition + 'px'
+          this.increaseWidth()
+        }
+        increaseWidth() {
+          let starWidth = 50;
+          const startInterval = setInterval(() => {
+            this.star.style.width = ++starWidth + "px";
+            if (starWidth > 100) {
+              clearInterval(startInterval);
+              this.setRandomPosition();
+            }
+          }, 100);
+        }
+        render(containerSelector) {
+          this.star = document.createElement("img");
+          this.star.setAttribute("src", "star.svg");
+          this.star.className = 'star'
+          let starWidth = 50;
+          this.star.style.width = starWidth + "px";
+
+          this.setRandomPosition();
+
+          if (containerSelector)
+            document.querySelector(containerSelector).append(this.star);
+          return this.star;
+        }
+      }
+      for (let i = 0; i < 10; i++) {
+        new Star().render("body");
+      }
+    </script>
+  </body>
+</html>

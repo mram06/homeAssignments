@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №20 Задача 4</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 4</h2>
+    <p>
+      На сторінці міститься певна кількість кнопок і інпутів. Підраховувати
+      загальну кількість кліків окремо на кнопках і окремо на інпутах.
+    </p>
+    <div id="container">
+      <input type="text" /><br />
+      <input type="text" /><br />
+      <input type="text" /><br />
+      <button>Button</button><br />
+      <button>Button</button><br /><br />
+      Inputs <br />
+      <input type="number" readonly id="inpDisplay" value="0" /><br />
+      Buttons <br />
+      <input type="number" readonly id="btnDisplay" value="0" />
+    </div>
+    <script>
+      const container = document.querySelector("#container");
+      container.addEventListener("click", function (e) {
+        let inpCounter = 0;
+        let btnCounter = 0;
+        if (e.target.tagName === "INPUT") inpCounter++;
+        else if (e.target.tagName === "BUTTON") btnCounter++;
+        const inpDisplay = document.querySelector("#inpDisplay");
+        const btnDisplay = document.querySelector("#btnDisplay");
+
+        inpDisplay.value = parseInt(inpDisplay.value) + inpCounter;
+        btnDisplay.value = parseInt(btnDisplay.value) + btnCounter;
+      });
+    </script>
+  </body>
+</html>

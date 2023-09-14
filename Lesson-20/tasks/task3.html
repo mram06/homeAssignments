@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №20 Задача 3</title>
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <body>
+    <h2>Задача 3</h2>
+    <p>
+      На формі вводять 7 числових значень (вік, зріст, вага, заробітна плата,
+      стаж, номер відділу, порядковий номер). Додати подію обробки події click
+      на форму і якщо клік на внутрішньому input, то автоматично замінювати
+      значення його на 0. Використати делегування
+    </p>
+    <form action="#" id="form">
+      <div><input type="number" value="20" /> Вік</div>
+      <div><input type="number" value="175" /> Зріст</div>
+      <div><input type="number" value="70" /> Вага</div>
+      <div><input type="number" value="15000" /> Заробітна плата</div>
+      <div><input type="number" value="2" /> Стаж</div>
+      <div><input type="number" value="5" /> Номер відділу</div>
+      <div><input type="number" value="7" /> Порядковий номер</div>
+    </form>
+    <script>
+      const form = document.getElementById("form");
+      form.addEventListener("click", function (e) {
+        if (e.target.tagName === "INPUT") e.target.value = 0;
+      });
+    </script>
+  </body>
+</html>

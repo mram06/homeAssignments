@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №20 Задача 2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    body {
+      overflow: hidden;
+    }
+    #container {
+      position: relative;
+    }
+
+    img {
+      width: 100px;
+    }
+    .tank {
+      position: absolute;
+    }
+  </style>
+  <body>
+    <h2>Задача 2</h2>
+    <p>
+      Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі
+      з’являються танки, які їдуть вниз. При кліку на танк він вибухає і зникає
+      з екрану.
+    </p>
+    <div id="container"></div>
+    <script>
+      class Bayraktar {
+        setRandomPosition() {
+          const leftPosition = 20 + Math.floor(Math.random() * (900 - 20 + 1));
+          this.tank.style.left = leftPosition + "px";
+        }
+        destroyTank() {
+          this.setAttribute("src", "explosion.gif");
+          setTimeout(() => {
+            this.setAttribute("src", "");
+          }, 1200);
+        }
+        tankMoving() {
+          let topPosition = 0;
+          setInterval(() => {
+            this.tank.style.top = ++topPosition + "px";
+          }, 100);
+        }
+
+        render(containerSelector) {
+          this.tank = document.createElement("img");
+          this.tank.setAttribute("src", "tank.png");
+          this.tank.className = "tank";
+          this.setRandomPosition();
+          this.tankMoving();
+
+          this.tank.addEventListener("click", this.destroyTank);
+
+          if (containerSelector)
+            document.querySelector(containerSelector).append(this.tank);
+          return this.tank;
+        }
+      }
+
+      for (let i = 0; i < 10; i++) {
+        new Bayraktar().render("#container");
+      }
+    </script>
+  </body>
+</html>
