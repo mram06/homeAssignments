@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №21 Задача 2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 2</h2>
+    <p>Задача 2. Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції<br>
+      - Вивести усіх простих клієнтів;<br>
+      - Вивести усіх клієнтів GoldenClient;<br>
+      - Знати сумарну кількість грошей на рахунку;
+      </p>
+    <script>
+      class Client {
+        #moneyAmount;
+        constructor({ type, id, name, moneyAmount }) {
+          this.type = type;
+          this.id = id;
+          this.name = name;
+          this.MoneyAmount = moneyAmount;
+        }
+        get MoneyAmount() {
+          return this.#moneyAmount;
+        }
+        set MoneyAmount(newValue) {
+          if (newValue < 0) throw new Error("Рахунок не може бути менше за 0");
+          this.#moneyAmount = newValue;
+        }
+        topUp(amount) {
+          this.MoneyAmount += amount;
+        }
+        withdraw(amount) {
+          this.MoneyAmount -= amount;
+        }
+        toString() {
+          return `${this.id}, ${this.name}, ${this.MoneyAmount}`;
+        }
+      }
+
+      class GoldenClient extends Client {
+        constructor({
+          type,
+          id,
+          name,
+          moneyAmount,
+          creditLimit,
+          percentsForCredit,
+        }) {
+          super({ type, id, name, moneyAmount });
+          this.creditLimit = creditLimit;
+          this.percentsForCredit = percentsForCredit;
+        }
+        penalty(creditMoney) {
+          return creditMoney * (this.percentsForCredit / 100);
+        }
+        toString() {
+          return `${this.id}, ${this.name}, ${this.MoneyAmount}, ${this.creditLimit}, ${this.percentsForCredit}`;
+        }
+      }
+      // Задача 2. Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції
+      // Вивести усіх простих клієнтів;
+      // Вивести усіх клієнтів GoldenClient;
+      // Знати сумарну кількість грошей на рахунку;
+
+      class Bank {
+        constructor(clients) {
+          this.clients = clients;
+        }
+        getStandardClients() {
+          return this.clients.filter((client) => client.type === "standard");
+        }
+        getGoldenClients() {
+          return this.clients.filter((client) => client.type === "golden");
+        }
+        getSumOfClientsAmount() {
+          return this.clients.reduce(
+            (prevSum, client) => prevSum + client.MoneyAmount,
+            0
+          );
+        }
+      }
+
+      const clients = [
+        new GoldenClient({
+          type: "golden",
+          id: 1,
+          name: "Клієнт 1",
+          moneyAmount: 10000,
+          creditLimit: 50000,
+          percentsForCredit: 10,
+        }),
+        new Client({
+          type: "standard",
+          id: 2,
+          name: "Клієнт 2",
+          moneyAmount: 5000,
+        }),
+        new GoldenClient({
+          type: "golden",
+          id: 3,
+          name: "Клієнт 3",
+          moneyAmount: 20000,
+          creditLimit: 30000,
+          percentsForCredit: 8,
+        }),
+        new Client({
+          type: "standard",
+          id: 4,
+          name: "Клієнт 4",
+          moneyAmount: 7500,
+        }),
+        new GoldenClient({
+          type: "golden",
+          id: 5,
+          name: "Клієнт 5",
+          moneyAmount: 30000,
+          creditLimit: 40000,
+          percentsForCredit: 9,
+        }),
+        new Client({
+          type: "standard",
+          id: 6,
+          name: "Клієнт 6",
+          moneyAmount: 4000,
+        }),
+        new GoldenClient({
+          type: "golden",
+          id: 7,
+          name: "Клієнт 7",
+          moneyAmount: 15000,
+          creditLimit: 25000,
+          percentsForCredit: 7,
+        }),
+        new Client({
+          type: "standard",
+          id: 8,
+          name: "Клієнт 8",
+          moneyAmount: 6000,
+        }),
+        new GoldenClient({
+          type: "golden",
+          id: 9,
+          name: "Клієнт 9",
+          moneyAmount: 22000,
+          creditLimit: 35000,
+          percentsForCredit: 6,
+        }),
+        new Client({
+          type: "standard",
+          id: 10,
+          name: "Клієнт 10",
+          moneyAmount: 8000,
+        }),
+      ];
+
+      let bank = new Bank(clients);
+      console.log(
+        bank.getStandardClients(),
+        bank.getGoldenClients(),
+        bank.getSumOfClientsAmount()
+      );
+    </script>
+  </body>
+</html>

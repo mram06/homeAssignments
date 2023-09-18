@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №21 Задача 3</title>
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <style>
+    #container {
+      position: relative;
+      height: 1000px;
+    }
+    .entity {
+      position: absolute;
+      width: 100px;
+    }
+  </style>
+  <body>
+    <h2>Задача 3</h2>
+    <p>Розробити Класи House, Dog, Bird</p>
+    <div id="container"></div>
+    <script>
+      class Entity {
+        constructor(
+          coordinateX = 50,
+          coordinateY = 50,
+          imgSrc,
+          refreshInterval
+        ) {
+          this.coordinateX = coordinateX;
+          this.coordinateY = coordinateY;
+          this.imgSrc = imgSrc;
+          this.refreshInterval = refreshInterval;
+        }
+        getRandomValue(minValue, maxValue) {
+          return (
+            minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+          );
+        }
+        spawn() {
+          this.entity.style.bottom = this.coordinateY;
+          this.entity.style.left = this.coordinateX;
+
+          setInterval(() => {
+            this.refresh();
+          }, 1000);
+        }
+        render(containerSelector) {
+          this.entity = document.createElement("img");
+          this.entity.className = "entity";
+          this.entity.setAttribute("src", this.imgSrc);
+
+          this.spawn();
+          if (containerSelector)
+            document.querySelector(containerSelector).append(this.entity);
+          return this.entity;
+        }
+      }
+
+      class House extends Entity {
+        constructor(coordinateX, coordinateY, imgSrc, refreshInterval) {
+          super(coordinateX, coordinateY, imgSrc, refreshInterval);
+        }
+        refresh() {
+          let size = this.getRandomValue(50, 200);
+          this.entity.style.width = size + "px";
+        }
+      }
+      class Dog extends Entity {
+        constructor(coordinateX, coordinateY, imgSrc, refreshInterval) {
+          super(coordinateX, coordinateY, imgSrc, refreshInterval);
+        }
+        refresh() {
+          this.entity.style.left = this.getRandomValue(50, 800) + "px";
+        }
+      }
+      class Bird extends Entity {
+        constructor(coordinateX, coordinateY, imgSrc, refreshInterval) {
+          super(coordinateX, coordinateY, imgSrc, refreshInterval);
+        }
+        refresh() {
+          this.entity.style.left = this.getRandomValue(50, 800) + "px";
+          this.entity.style.top = this.getRandomValue(50, 800) + "px";
+        }
+      }
+
+      // new Entity(100, 100, 'house.png', 2000).render('#container')
+      const house = new House(100, 100, "house.png", 2000);
+      house.render("#container");
+
+      const dog = new Dog(150, 150, "dog.png", 500);
+      dog.render("#container");
+
+      const bird = new Dog(200, 200, "bird.png", 200);
+      bird.render("#container");
+    </script>
+  </body>
+</html>

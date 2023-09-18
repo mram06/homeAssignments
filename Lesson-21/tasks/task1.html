@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №21 Задача 1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 1</h2>
+    <p>
+      Створити клас Client. На основі цього класу створити клас GoldenClient
+    </p>
+    <script>
+      // Задача 1. Створити клас Client
+      class Client {
+        #moneyAmount;
+        constructor({ type, id, name, moneyAmount }) {
+          this.type = type;
+          this.id = id;
+          this.name = name;
+          this.MoneyAmount = moneyAmount;
+        }
+        get MoneyAmount() {
+          return this.#moneyAmount;
+        }
+        set MoneyAmount(newValue) {
+          if (newValue < 0) throw new Error("Рахунок не може бути менше за 0");
+          this.#moneyAmount = newValue;
+        }
+        topUp(amount) {
+          this.MoneyAmount += amount;
+        }
+        withdraw(amount) {
+          this.MoneyAmount -= amount;
+        }
+        toString() {
+          return `${this.id}, ${this.name}, ${this.MoneyAmount}`;
+        }
+      }
+
+      class GoldenClient extends Client {
+        constructor({
+          type,
+          id,
+          name,
+          moneyAmount,
+          creditLimit,
+          percentsForCredit,
+        }) {
+          super({ type, id, name, moneyAmount });
+          this.creditLimit = creditLimit;
+          this.percentsForCredit = percentsForCredit;
+        }
+        penalty(creditMoney) {
+          return creditMoney * (this.percentsForCredit / 100);
+        }
+        toString() {
+          return `${this.id}, ${this.name}, ${this.MoneyAmount}, ${this.creditLimit}, ${this.percentsForCredit}`;
+        }
+      }
+      let r1 = new Client({
+        type: "standard",
+        id: 1,
+        name: "Client 1",
+        moneyAmount: 5000,
+      });
+      r1.topUp(2245);
+      console.log(r1);
+    </script>
+  </body>
+</html>
