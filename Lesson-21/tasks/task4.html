@@ -15,10 +15,96 @@
   <body>
     <h2>Задача 4</h2>
     <p>
-
+      Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до
+      12, чи не канікули) та оцінку (перевіряти чи є числом, чи від 1 до 100).
+      Вивести чи зможе він виправити оцінку (якщо оцінка погана і це не останній
+      місяць у семестрі) . Обробку усіх помилок зробити з використанням
+      відповідних класів.
     </p>
+    <div id="container"></div>
     <script>
+      class isNotNumberError extends Error {
+        constructor() {
+          super();
+          this.message = "Має бути числом";
+          this.name = "isNotNumberError";
+        }
+      }
+      class isNotInRange extends Error {
+        constructor(currentNumber) {
+          super();
+          this.currentNumber = currentNumber;
+          this.message = "Має входити в межі";
+          this.name = "isNotInRange";
+        }
+      }
+      class isHoliday extends Error {
+        constructor() {
+          super();
+          this.message = "Має бути не від 6 до 8";
+          this.name = "isNotHoliday";
+        }
+      }
 
+      class Study {
+        validate() {
+          try {
+            let studyMonth = parseInt(this.studyMonthInp.value);
+            let mark = parseInt(this.markInp.value);
+
+            if (isNaN(studyMonth)) throw new isNotNumberError();
+            if (isNaN(mark)) throw new isNotNumberError();
+
+            if (studyMonth < 1 || studyMonth > 12) throw new isNotInRange();
+            if (mark < 1 || mark > 100) throw new isNotInRange();
+
+            if ((studyMonth >= 6) & (studyMonth <= 8)) throw new isHoliday();
+          } catch (error) {
+            if (error instanceof isNotNumberError)
+              console.log(error.message + " Пишіть тільки числа");
+            else if (error instanceof isNotInRange)
+              console.log(error.message + " Не може виходити за межі");
+            else if (error instanceof isHoliday)
+              console.log(error.message + " Не може бути в період канікул");
+            else console.log(error.message);
+            return false;
+          }
+          return true;
+        }
+        retakeMark() {
+          if (this.validate()) {
+            let studyMonth = parseInt(this.studyMonthInp.value);
+            let mark = parseInt(this.markInp.value);
+            if (mark <= 4 && studyMonth !== 12 && studyMonth !== 5)
+              document.body.append("Ви можете виправити оцінку");
+          }
+        }
+        render(containerSelector) {
+          const form = document.createElement("form");
+          this.studyMonthInp = document.createElement("input");
+          this.studyMonthInp.setAttribute("type", "text");
+          this.markInp = document.createElement("input");
+          this.markInp.setAttribute("type", "text");
+          const btn = document.createElement("button");
+          btn.innerText = "Перевірити";
+
+          form.append("Місяць навчання:");
+          form.append(this.studyMonthInp);
+          form.append("Оцінка:");
+          form.append(this.markInp);
+          form.append(btn);
+
+          btn.addEventListener("click", this.validate.bind(this));
+          btn.addEventListener("click", this.retakeMark.bind(this));
+
+          if (containerSelector)
+            document.querySelector(containerSelector).append(form);
+          return form;
+        }
+      }
+
+      const form = new Study();
+      form.render("#container");
     </script>
   </body>
 </html>
