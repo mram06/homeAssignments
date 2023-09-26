@@ -14,11 +14,30 @@
   </head>
   <body>
     <h2>Задача 2</h2>
-    <p>Вивести дату у форматі <br>
-      “місяць – рік – вихідний/робочий”      
-      </p>
+    <p>
+      Вивести дату у форматі <br />
+      “місяць – рік – вихідний/робочий”
+    </p>
     <script>
-
+      function getWeekDay() {
+        let date = new Date();
+        let result;
+        switch (date.getDay()) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+            result = "робочий";
+            break;
+          case 6:
+          case 7:
+            result = "вихідний";
+            break;
+        }
+        return `${date.getMonth() + 1} - ${date.getFullYear()} - ${result}`;
+      }
+      document.body.append(getWeekDay());
     </script>
   </body>
 </html>

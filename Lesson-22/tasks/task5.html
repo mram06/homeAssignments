@@ -17,8 +17,26 @@
     <p>
       Користувач вводить дату народження. Визначити, скільки йому повних років.
     </p>
+    День<input type="number" class="date" /><br />
+    Місяць<input type="number" class="date" /><br />
+    Рік<input type="number" class="date" /><br />
+    <button class="btn btn-primary">Визначити вік</button><br>
     <script>
-
+      let inpList = document.querySelectorAll(".date");
+      function getFullYears() {
+        let today = new Date();
+        let userDate = new Date();
+        userDate.setDate(inpList[0].value);
+        userDate.setMonth(inpList[1].value - 1);
+        userDate.setFullYear(inpList[2].value);
+        let years = today.getFullYear() - userDate.getFullYear();
+        let months = today.getMonth() - userDate.getMonth();
+        let days = today.getDate() - userDate.getDate();
+        if (months < 0 || (months === 0 && days < 0)) years--;
+        document.body.append(`Повних років ${years}`);
+      }
+      let btn = document.querySelector(".btn");
+      btn.onclick = getFullYears;
     </script>
   </body>
 </html>

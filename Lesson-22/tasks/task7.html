@@ -15,10 +15,25 @@
   <body>
     <h2>Задача 7</h2>
     <p>
-      Користувач бере авто на вказану кількість годин. Визначити кінцевий час повернення.
+      Користувач бере авто на вказану кількість годин. Визначити кінцевий час
+      повернення.
     </p>
+    Кількість годин<input type="number" class="date" /><br />
+    <button class="btn btn-primary">Визначити дату повернення</button><br />
     <script>
-
+      class CarRent {
+        getReturnDate() {
+          let inp = document.querySelector(".date");
+          let returnDate = new Date();
+          returnDate.setHours(returnDate.getHours() + parseInt(inp.value));
+          document.body.append(`Дата повернення: ${returnDate}`);
+        }
+        render() {
+          const btn = document.querySelector(".btn");
+          btn.onclick = this.getReturnDate;
+        }
+      }
+      let t1 = new CarRent().render();
     </script>
   </body>
 </html>

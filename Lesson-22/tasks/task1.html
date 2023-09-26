@@ -18,7 +18,12 @@
       Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго вечора)
     </p>
     <script>
-
+      let time = new Date()
+      let timeHour = time.getHours()
+      if(timeHour >= 6 && timeHour < 12) document.body.append('Доброго ранку')
+      else if(timeHour >= 12 && timeHour < 18) document.body.append('Добрий день')
+      else if(timeHour >= 18 && timeHour < 24) document.body.append('Добрий вечір')
+      else if(timeHour >= 0 && timeHour < 6) document.body.append('Доброї ночі')
     </script>
   </body>
 </html>

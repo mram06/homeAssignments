@@ -15,10 +15,52 @@
   <body>
     <h2>Задача 8</h2>
     <p>
-      Задаємо користувачу задачу з додавання двох чисел. Визначити скільки секунд було використано для розв’язання задачі.
+      Задаємо користувачу задачу з додавання двох чисел. Визначити скільки
+      секунд було використано для розв’язання задачі.
     </p>
+    <div id="container"></div>
+    <div id="message"></div>
     <script>
+      class Task {
+        getRandomValue(min, max) {
+          return min + Math.floor(Math.random() * (max - min + 1));
+        }
+        generateTask() {
+          this.start = new Date();
+          let firstNumber = this.getRandomValue(1, 10);
+          let secondNumber = this.getRandomValue(1, 10);
+          this.task = [];
+          this.task.push(firstNumber, secondNumber, firstNumber + secondNumber);
+          document.querySelector(
+            "#container"
+          ).innerText = `${this.task[0]} +  ${this.task[1]} = `;
+        }
+        checker() {
+          const display = document.querySelector("#message");
+          if (this.input.value == this.task[2]) {
+            display.style.color = "green";
+            display.innerText = "Правильна відповідь";
+          } else {
+            display.style.color = "red";
+            display.innerText = "Неправильна відповідь";
+          }
+          let end = new Date();
+          let duration = end - this.start;
+          display.innerText += ` ${(duration / 1000).toFixed(2)} сек`;
+        }
+        render(containerSelector) {
+          this.generateTask();
+          this.input = document.createElement("input");
+          this.input.setAttribute("type", "number");
+          const btn = document.createElement("button");
+          btn.className = "btn btn-success";
+          btn.innerText = "Перевірити";
+          btn.addEventListener("click", this.checker.bind(this));
 
+          document.querySelector(containerSelector).append(this.input, btn);
+        }
+      }
+      new Task().render("#container");
     </script>
   </body>
 </html>

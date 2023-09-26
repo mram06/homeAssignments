@@ -18,7 +18,8 @@
       Вивести назву дня
     </p>
     <script>
-
+      let dateName = new Date().toLocaleString('uk-UA', {weekday:"long"})
+      document.body.append(dateName)
     </script>
   </body>
 </html>

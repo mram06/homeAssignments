@@ -15,9 +15,35 @@
   <body>
     <h2>Задача 6</h2>
     <p>
-      Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.
+      Користувач іде у відпустку на 56 днів. Визначити дату на момент його
+      повернення.
     </p>
+    День<input type="number" class="date" /><br />
+    Місяць<input type="number" class="date" /><br />
+    Рік<input type="number" class="date" /><br />
+    <button class="btn btn-primary">Визначити дату повернення</button><br>
     <script>
+      class Vacation {
+        constructor(days) {
+          this.days = days;
+        }
+        getReturnDate() {
+          let inpList = document.querySelectorAll(".date");
+          let userDate = new Date();
+          userDate.setDate(inpList[0].value);
+          userDate.setMonth(inpList[1].value - 1);
+          userDate.setFullYear(inpList[2].value);
+
+          let returnDate = new Date();
+          returnDate.setDate(userDate.getDate() + this.days);
+          document.body.append(`Дата повернення: ${returnDate}`);
+        }
+        render() {
+          const btn = document.querySelector(".btn");
+          btn.onclick = this.getReturnDate.bind(this);
+        }
+      }
+      let t1 = new Vacation(56).render();
     </script>
   </body>
 </html>

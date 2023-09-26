@@ -12,14 +12,33 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
-  <style>
-
-  </style>
+  <style></style>
   <body>
     <h2>Задача 3</h2>
     <p>Визначити поточну пору року</p>
     <script>
-
+      function getCurrentSeason() {
+        let currentMonth = new Date().getMonth() + 1;
+        switch (currentMonth) {
+          case 12:
+          case 1:
+          case 2:
+            return "Зима";
+          case 3:
+          case 4:
+          case 5:
+            return "Весна";
+          case 6:
+          case 7:
+          case 8:
+            return "Літо";
+          case 9:
+          case 10:
+          case 11:
+            return "Осінь";
+        }
+      }
+      document.body.append(getCurrentSeason());
     </script>
   </body>
 </html>
