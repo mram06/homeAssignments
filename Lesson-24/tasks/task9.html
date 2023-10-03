@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №24 Задача 9</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 9</h2>
+    <p>
+      Дано масив показів температур. Підрахувати кількість входжень кожного із
+      показів Заокруглити вверх значення та підрахувати кількість різних
+      показів.
+    </p>
+    <script>
+      let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9, 12.7];
+
+      let tempCount = new Map();
+      for (const temp of temperatures) {
+        let count = tempCount.get(temp) ?? 0;
+        tempCount.set(temp, count + 1);
+      }
+      tempCount.forEach((val, key) => {
+        document.write(`${key} - ${val}<br>`);
+      });
+
+      let newTemperatures = temperatures.map((temp) => Math.ceil(temp));
+      let newTempCount = new Map();
+      for (const temp of newTemperatures) {
+        let count = newTempCount.get(temp) ?? 0;
+        newTempCount.set(temp, count + 1);
+      }
+      document.write('<br>');
+      newTempCount.forEach((val, key) => {
+        document.write(`${key} - ${val}<br>`);
+      });
+    </script>
+  </body>
+</html>

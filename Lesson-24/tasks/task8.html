@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №24 Задача 8</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 8</h2>
+    <p>
+      Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних
+      факультетів, та кількість студентів кожного з курсів.
+    </p>
+    <script>
+      // Приклад масиву студентів з додатковими записами
+      let studentsList = [
+        {
+          name: "Іванов Іван Іванович",
+          course: 2,
+          faculty: "Факультет фізики",
+        },
+        {
+          name: "Іванов Іван Іванович",
+          course: 2,
+          faculty: "Факультет фізики",
+        },
+        {
+          name: "Петров Петро Петрович",
+          course: 3,
+          faculty: "Факультет математики",
+        },
+        {
+          name: "Сидорова Марія Олександрівна",
+          course: 2,
+          faculty: "Факультет фізики",
+        },
+        {
+          name: "Коваленко Олена Вікторівна",
+          course: 1,
+          faculty: "Факультет інформатики",
+        },
+        {
+          name: "Мельник Андрій Ігорович",
+          course: 3,
+          faculty: "Факультет інформатики",
+        },
+        {
+          name: "Павленко Ірина Миколаївна",
+          course: 1,
+          faculty: "Факультет математики",
+        },
+      ];
+
+      let facultyCount = new Map();
+      let studentsCount = new Map();
+
+      for (const student of studentsList) {
+        let facCounter = facultyCount.get(student.faculty) ?? 0;
+        let studCounter = studentsCount.get(student.course) ?? 0;
+        facultyCount.set(student.faculty, facCounter + 1);
+        studentsCount.set(student.course, studCounter + 1);
+      }
+      facultyCount.forEach((val, key) => {
+        document.write(`${key} - ${val} <br>`);
+      });
+      studentsCount.forEach((val, key) => {
+        document.write(`${key} курс - ${val} <br>`);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №24 Задача 7</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 7</h2>
+    <p>
+      Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача зберігається логін). Підрахувати для кожного клієнта кількість відвідувань.
+    </p>
+    <script>
+      let logs = [
+        {visit: 'user1'},
+        {visit: 'localUser'},
+        {visit: 'admin'},
+        {visit: 'admin'},
+        {visit: 'user2'},
+        {visit: 'user2'},
+        {visit: 'systemAdm'},
+        {visit: 'localUser'}
+      ]
+      
+      let login = new Map()
+      for (const user of logs) {
+        let count = login.get(user.visit) ?? 0
+        login.set(user.visit, count + 1)
+      }
+      login.forEach((val, key) => {
+        document.write(`${key} - ${val}<br>`)
+      });
+    </script>
+  </body>
+</html>

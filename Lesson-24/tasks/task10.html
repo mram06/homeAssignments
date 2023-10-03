@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №24 Задача 10</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 10</h2>
+    <p>
+      Дано два списки прізвищ студентів, що відвідують гуртки з математики і
+      історії. Підрахувати скільки студентів з гуртка з історії також відвідують
+      гурток з математики. Також підрахувати скільки всього студентів відвідують
+      хоча б один гурток.
+    </p>
+    <script>
+      let mathClubStudents = ["Іванов", "Петров", "Сидоров", "Коваленко"];
+      let historyClubStudents = [
+        "Мельник",
+        "Павленко",
+        "Соловей",
+        "Іванов",
+        "Петров",
+      ];
+      // Підрахувати скільки студентів з гуртка з історії також відвідуютьгурток з математики
+      let mathSet = new Set(mathClubStudents);
+      let historySet = new Set(historyClubStudents);
+
+      let histStudVisitMath = [...mathSet].filter((student) =>
+        historySet.has(student)
+      );
+      // підрахувати скільки всього студентів відвідують хоча б один гурток
+      let studentsVisitSum = new Set([
+        ...mathClubStudents,
+        ...historyClubStudents,
+      ]).size;
+      
+      document.write(`Студентів з гуртка з історії також відвідуютьгурток з математики - ${histStudVisitMath.length}<br>
+      Всього студентів відвідують хоча б один гурток - ${studentsVisitSum}`)
+    </script>
+  </body>
+</html>

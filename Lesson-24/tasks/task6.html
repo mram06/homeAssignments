@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №24 Задача 6</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2>Задача 6</h2>
+    <p>
+      Дано масив книг (назва, рік видання, автор). Підрахувати кількість книг
+      для кожного автора.
+    </p>
+    <script>
+      let bookList = [
+        {
+          title: "The witcher",
+          year: 2015,
+          author: "Andrzej Sapkowski",
+        },
+        {
+          title: "The witcher",
+          year: 2020,
+          author: "Andrzej Sapkowski",
+        },
+        {
+          title: "To Kill a Mockingbird",
+          year: 1960,
+          author: "Harper Lee",
+        },
+        {
+          title: "1984",
+          year: 1949,
+          author: "George Orwell",
+        },
+        {
+          title: "The Great Gatsby",
+          year: 1925,
+          author: "F. Scott Fitzgerald",
+        },
+        {
+          title: "Pride and Prejudice",
+          year: 1813,
+          author: "Jane Austen",
+        },
+        {
+          title: "The Catcher in the Rye",
+          year: 1951,
+          author: "J.D. Salinger",
+        },
+      ];
+      let booksCount = new Map()
+      for (const book of bookList) {
+        let count = booksCount.get(book.author) ?? 0
+        booksCount.set(book.author, count + 1)
+      }
+      booksCount.forEach((element, key) => {
+        document.write(`${key} - ${element} <br>`)
+      });
+    </script>
+  </body>
+</html>
